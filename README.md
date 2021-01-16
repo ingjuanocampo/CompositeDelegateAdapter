@@ -1,2 +1,2 @@
 # CompositeDelegateAdapter
-Composite Delegate Adapter 
+Composite Delegate Adapter for recycler view 
