@@ -1,0 +1,2 @@
+# CompositeDelegateAdapter
+Composite Delegate Adapter 
