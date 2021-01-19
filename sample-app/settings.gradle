@@ -1,2 +1,3 @@
+include ':cda'
 include ':app'
 rootProject.name = "Composite Delegate Adapter"
