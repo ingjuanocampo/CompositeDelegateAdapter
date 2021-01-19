@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ingjuanocampo.cdapter.CompositeDelegateAdapter
 import com.ingjuanocampo.cdapter.sample.delegate.ColorItemViewHolder
 import com.ingjuanocampo.cdapter.sample.delegate.ColorRecyclerViewType
+import com.ingjuanocampo.cdapter.sample.delegate.DelegateViewTypes
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = CompositeDelegateAdapter(10)
 
-        adapter.addDelegate(1) { ColorItemViewHolder(it) }
+        adapter.addDelegate(DelegateViewTypes.COLOR_VIEW_TYPE.ordinal) { ColorItemViewHolder(it) }
 
         recyclerView.adapter = adapter
 

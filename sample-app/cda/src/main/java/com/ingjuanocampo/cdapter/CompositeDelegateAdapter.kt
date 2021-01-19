@@ -39,7 +39,7 @@ open class CompositeDelegateAdapter(private val delegateCapacity: Int) : Recycle
         addItems(list)
     }
 
-    fun addDelegate(id: Int, delegate: (ViewGroup) -> DelegateViewHolder) {
-        delegateAdapters.put(id, delegate)
+    fun addDelegate(viewType: Int, delegate: (ViewGroup) -> DelegateViewHolder) {
+        delegateAdapters.put(viewType, delegate)
     }
 }

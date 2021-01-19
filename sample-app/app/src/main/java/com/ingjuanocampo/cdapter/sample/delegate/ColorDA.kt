@@ -29,5 +29,5 @@ data class ColorRecyclerViewType(val text: String, val textColor: Int, val bkg: 
         return text.hashCode()
     }
 
-    override fun getViewType(): Int = 1
+    override fun getViewType(): Int = DelegateViewTypes.COLOR_VIEW_TYPE.ordinal
 }
