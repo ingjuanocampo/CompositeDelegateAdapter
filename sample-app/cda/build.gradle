@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'com.jfrog.bintray'
+    id 'maven-publish'
 }
 
 android {
@@ -30,6 +32,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${archivesBaseName}.aar"
+        }
+    }
+
 }
 
 dependencies {
@@ -42,3 +51,53 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
+
+//region Publish to jCenter
+def libGroupId = 'com.ingjuanocampo'
+def libArtifactId = 'cda'
+def libVersion = '1.0.0'
+def libDesc = 'This is an Android project with a composite adapter'
+def libLicenses = ['Apache-2.0']
+def libVCSUrl = 'https://github.com/ingjuanocampo/CompositeDelegateAdapter.git'
+
+// Generate Source Jar
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "sources"
+}
+
+// Create the publication with the pom configuration
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            groupId libGroupId
+            artifactId libArtifactId
+            version libVersion
+            artifact(sourceJar)
+            artifact("$buildDir/outputs/aar/${archivesBaseName}.aar")
+        }
+    }
+}
+
+// Bintray config
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    publications = ['MyPublication']
+    pkg {
+        repo = "CDA"
+        name = "$libGroupId:$libArtifactId"
+        desc = libDesc
+        licenses = libLicenses
+        vcsUrl = libVCSUrl
+        version {
+            name = libVersion
+            vcsTag = libVersion
+            released = new Date()
+        }
+    }
+}
+//endregion
