@@ -55,7 +55,7 @@ dependencies {
 //region Publish to jCenter
 def libGroupId = 'com.ingjuanocampo'
 def libArtifactId = 'cda'
-def libVersion = '1.0.0'
+def libVersion = '1.0.2'
 def libDesc = 'This is an Android project with a composite adapter'
 def libLicenses = ['Apache-2.0']
 def libVCSUrl = 'https://github.com/ingjuanocampo/CompositeDelegateAdapter.git'

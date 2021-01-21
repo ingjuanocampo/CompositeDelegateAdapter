@@ -23,23 +23,45 @@ open class CompositeDelegateAdapter(private val delegateCapacity: Int) : Recycle
 
     override fun getItemCount() = items.size
 
-    open fun addItems(itemsToInsert: List<RecyclerViewType>) {
+    fun addNewItems(itemsToInsert: List<RecyclerViewType>) {
         val originalItems = items.toMutableList()
         if (itemsToInsert.isNullOrEmpty().not()) {
             items.addAll(itemsToInsert)
         }
+        dispatchUpdates(originalItems, items)
+    }
+
+    private fun dispatchUpdates(originalItems: MutableList<RecyclerViewType>, items: java.util.ArrayList<RecyclerViewType>) {
         val diffResult = DiffUtil.calculateDiff(DelegateDiffCallback(originalItems, items))
         diffResult.dispatchUpdatesTo(this)
     }
 
+    fun addNewItem(itemToAdd: RecyclerViewType) = addNewItems(arrayListOf(itemToAdd))
 
-    open fun addItem(itemToAdd: RecyclerViewType) {
-        val list = ArrayList<RecyclerViewType>()
-        list.add(itemToAdd)
-        addItems(list)
+    fun deleteItems(itemsToRemove: List<RecyclerViewType>) {
+        val originalItems = items.toMutableList()
+        if (itemsToRemove.isNullOrEmpty().not()) {
+            items.removeAll(itemsToRemove)
+        }
+        dispatchUpdates(originalItems, items)
     }
 
-    fun addDelegate(viewType: Int, delegate: (ViewGroup) -> DelegateViewHolder) {
+    fun deleteItem(itemToRemove: RecyclerViewType) = deleteItems(arrayListOf(itemToRemove))
+
+    fun updateItem(item: RecyclerViewType) = updateItems(arrayListOf(item))
+
+    fun updateItems(itemsToUpdate: List<RecyclerViewType>) {
+        val originalItems = items.toMutableList()
+        if (itemsToUpdate.isNullOrEmpty().not()) {
+            items.clear()
+            items.addAll(itemsToUpdate)
+        } else items.clear()
+        dispatchUpdates(originalItems, items)
+    }
+
+    fun clearAll() = updateItems(emptyList())
+
+    fun appendDelegate(viewType: Int, delegate: (ViewGroup) -> DelegateViewHolder) {
         delegateAdapters.put(viewType, delegate)
     }
 }

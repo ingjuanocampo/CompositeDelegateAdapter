@@ -16,32 +16,32 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = CompositeDelegateAdapter(10)
 
-        adapter.addDelegate(DelegateViewTypes.COLOR_VIEW_TYPE.ordinal) { ColorItemViewHolder(it) }
+        adapter.appendDelegate(DelegateViewTypes.COLOR_VIEW_TYPE.ordinal) { ColorItemViewHolder(it) }
 
         recyclerView.adapter = adapter
 
-        adapter.addItem(ColorRecyclerViewType(
+        adapter.addNewItem(ColorRecyclerViewType(
                 "Test 1",
                 R.color.white,
                 R.color.design_default_color_error
         ))
 
-        adapter.addItem(ColorRecyclerViewType(
+        adapter.addNewItem(ColorRecyclerViewType(
                 "Test 2",
                 R.color.black,
                 R.color.white
         ))
-        adapter.addItem(ColorRecyclerViewType(
+        adapter.addNewItem(ColorRecyclerViewType(
                 "Test 3",
                 R.color.purple_200,
                 R.color.teal_700
         ))
-        adapter.addItem(ColorRecyclerViewType(
+        adapter.addNewItem(ColorRecyclerViewType(
                 "Test 4",
                 R.color.design_default_color_primary,
                 R.color.design_default_color_secondary
         ))
-        adapter.addItem(ColorRecyclerViewType(
+        adapter.addNewItem(ColorRecyclerViewType(
                 "Test 5",
                 R.color.material_on_background_disabled,
                 R.color.design_default_color_on_secondary
