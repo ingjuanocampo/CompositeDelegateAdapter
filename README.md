@@ -1,10 +1,10 @@
 # CDA: Composite Delegate Adapter in Kotlin 
 
 
-CDA Lib is a simple delegate-pattern to build Adapters of the recycler view in composition instead of inherantence (which is the common way in android to build adatper by extending from Adapter classes). 
-Also the lib includes some conveniece methods to easly notify calculate and dispatch updates to the adapters by using the DiffUtils. 
+CDA Lib is a simple delegate-pattern to build Adapters of the recyclerview in composition instead of inheritance (which is the common way in android to build adatper by extending from Adapter classes). 
+Also the lib includes some convenience methods to easily notify calculate and dispatch updates to the adapters by using the DiffUtils.
 
-Using this libs should speed up your development and reduce the changes of getting a good class adapters. With CDA you only concernt about the fact of building the ViewHolders you want to include in the adapter and adding the data that it represents. No switches, not adapters, no need to notify updates manually. 
+Using this libs you should speed up your development and reduce the changes of getting a long classes adapters. With CDA you only concernt about the fact of building the ViewHolders you want to include in the adapter and adding the data that it represents. No switches, not adapters, no need to notify updates manually. 
 
 
 ### Version 1.0.2
