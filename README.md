@@ -7,7 +7,7 @@ Also the lib includes some conveniece methods to easly notify calculate and disp
 Using this libs should speed up your development and reduce the changes of getting a good class adapters. With CDA you only concernt about the fact of building the ViewHolders you want to include in the adapter and adding the data that it represents. No switches, not adapters, no need to notify updates manually. 
 
 
-### Version 1.0.1 
+### Version 1.0.2
 
 First release of the lib, waiting for feedback. 
 Including: 
@@ -20,3 +20,111 @@ Including:
 ### Getting stared 
 
 #### Setting up dependecy 
+
+```
+    implementation 'com.ingjuanocampo:cda:XXX'
+```
+
+Please replace the `XXX` with the latest version. 
+
+
+Also include this into the repositories list 
+
+```
+  maven {
+           url  "https://dl.bintray.com/ingjuanocampo/CDA"
+       }
+```
+
+It should ended up looking like this: 
+
+```
+allprojects {
+     repositories {
+         google()
+         jcenter()
+         maven {
+             url  "https://dl.bintray.com/ingjuanocampo/CDA"
+         }
+     }
+```
+
+
+#### Terminology 
+
+1. CompositeDelegateAdapter: Is the Adapter you will set to your recyclerview. It receives in the constructos the size of the viewholders your adapter will support as an interger. 
+```kotlin
+        val adapter = CompositeDelegateAdapter(10)
+```
+
+The class extends from the RecyclerView.Adapter and it is open to extension (Please avoid it, keep you adapters easy and clean) 
+
+
+This adapter uses to renderize a lisf of DelegateViewHolder, and you can add them so the CompositeDelegateAdapter. 
+
+Use the method `appendDelegate(...)`  to append a DelegateViewHolder, by also including the viewType id that it is related to. 
+
+for example; 
+```kotlin
+        adapter.appendDelegate(DelegateViewTypes.COLOR_VIEW_TYPE.ordinal) { ColorItemViewHolder(it) }
+```
+2. RecyclerViewType is a contract interface to bind the items in the adapter to their repective DelegateViewHolder. 
+
+```kotlin
+interface RecyclerViewType {
+    fun getDelegateId(): Int
+    fun getViewType(): Int
+}
+```
+
+
+Implement this and provide a unique ID and a viewTypeId both as Intergers. 
+
+For example; 
+
+
+```kotlin
+data class ColorRecyclerViewType(val text: String, val textColor: Int, val bkg: Int):
+    RecyclerViewType {
+    override fun getDelegateId(): Int {
+        return text.hashCode()
+    }
+
+    override fun getViewType(): Int = DelegateViewTypes.COLOR_VIEW_TYPE.ordinal
+}
+```
+
+Please be aware that the model you will use here should represent what need to be bound into the ViewHolder. 
+
+3. DelegateViewHolder: This is class extends from `RecyclerView.ViewHolder` and it the one in charge to bind the information of the assigned `RecyclerViewType` when the adapter binds the for that particular position. 
+
+For example: 
+
+``` kotlin 
+data class ColorItemViewHolder( val parent: ViewGroup):
+    DelegateViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.delegate_color, parent, false)) {
+
+    private val tvDelegate = itemView.findViewById<TextView>(R.id.tvDelegate)
+    private val lnDelegate = itemView.findViewById<LinearLayout>(R.id.lnDelegate)
+
+    override fun onBindViewHolder(recyclerViewType: RecyclerViewType) {
+        recyclerViewType as ColorRecyclerViewType
+        tvDelegate.text = recyclerViewType.text
+        tvDelegate.setTextColor(itemView.resources.getColor(recyclerViewType.textColor))
+        lnDelegate.setBackgroundColor(itemView.resources.getColor(recyclerViewType.bkg))
+    }
+
+}
+``` 
+
+
+
+
+#### Say goodbye to Inheritance Adapter, Say hello to CDA 
+
+
+
+
+
+
+
