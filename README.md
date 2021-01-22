@@ -10,7 +10,7 @@ Using this libs you should speed up your development and reduce the changes of g
 ### Version 1.0.2
 
 First release of the lib, waiting for feedback. 
-Including: 
+Included: 
 - Composite delegate Adapter CompositeDelegateAdapter
 - Methods to notify the adapter by using DiffUtils internally 
 - Contract to represent UI models that the adapter will show (RecyclerViewType) 
@@ -52,7 +52,7 @@ allprojects {
 
 #### Terminology 
 
-1. CompositeDelegateAdapter: Is the Adapter you will set to your recyclerview. It receives in the constructos the size of the viewholders your adapter will support as an interger. 
+1. CompositeDelegateAdapter: Is the Adapter you will set to your recyclerview. It receives in the constructos the size of the viewholders your adapter will support as an integer. 
 ```kotlin
         val adapter = CompositeDelegateAdapter(10)
 ```
@@ -68,7 +68,7 @@ for example;
 ```kotlin
         adapter.appendDelegate(DelegateViewTypes.COLOR_VIEW_TYPE.ordinal) { ColorItemViewHolder(it) }
 ```
-2. RecyclerViewType is a contract interface to bind the items in the adapter to their repective DelegateViewHolder. 
+2. RecyclerViewType is a contract interface to bind the items in the adapter to their respective DelegateViewHolder. 
 
 ```kotlin
 interface RecyclerViewType {
@@ -78,7 +78,7 @@ interface RecyclerViewType {
 ```
 
 
-Implement this and provide a unique ID and a viewTypeId both as Intergers. 
+Implement this and provide a unique ID and a viewTypeId both as Integers. 
 
 For example; 
 
@@ -163,7 +163,7 @@ Finally, to set items into the adapter, you can just something like this
         ))
 ```
 
-In the above example, there is only one `DelegateViewHolder` as the `ColorItemViewHolder` which renderize `ColorRecyclerViewType` with some scential information. 
+In the above example, there is only one `DelegateViewHolder` as the `ColorItemViewHolder` which shows the info from `ColorRecyclerViewType`. 
 
 The `ColorRecyclerViewType` uses a simple interger as recycler view type, in this case `DelegateViewTypes.COLOR_VIEW_TYPE.ordinal`, so as you may observe, the method `adapter.appendDelegate(id) { }` recieves the same id of the `RecyclerViewType` that will represent the data. Also the method receives the `DelegateViewHolder` as a lambda fuction to be executed by the adapter. 
 
