@@ -120,7 +120,56 @@ data class ColorItemViewHolder( val parent: ViewGroup):
 
 
 
-#### Say goodbye to Inheritance Adapter, Say hello to CDA 
+#### Say goodbye to Inheritance Adapter, Say hello to CDA! 
+
+Finally, to set items into the adapter, you can just something like this 
+
+
+```kotlin
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        
+        val adapter = CompositeDelegateAdapter(1)
+
+        adapter.appendDelegate(DelegateViewTypes.COLOR_VIEW_TYPE.ordinal) { ColorItemViewHolder(it) }
+
+        recyclerView.adapter = adapter
+
+        adapter.addNewItem(ColorRecyclerViewType(
+                "Test 1",
+                R.color.white,
+                R.color.design_default_color_error
+        ))
+
+        adapter.addNewItem(ColorRecyclerViewType(
+                "Test 2",
+                R.color.black,
+                R.color.white
+        ))
+        adapter.addNewItem(ColorRecyclerViewType(
+                "Test 3",
+                R.color.purple_200,
+                R.color.teal_700
+        ))
+        adapter.addNewItem(ColorRecyclerViewType(
+                "Test 4",
+                R.color.design_default_color_primary,
+                R.color.design_default_color_secondary
+        ))
+        adapter.addNewItem(ColorRecyclerViewType(
+                "Test 5",
+                R.color.material_on_background_disabled,
+                R.color.design_default_color_on_secondary
+        ))
+```
+
+In the above example, there is only one `DelegateViewHolder` as the `ColorItemViewHolder` which renderize `ColorRecyclerViewType` with some scential information. 
+
+The `ColorRecyclerViewType` uses a simple interger as recycler view type, in this case `DelegateViewTypes.COLOR_VIEW_TYPE.ordinal`, so as you may observe, the method `adapter.appendDelegate(id) { }` recieves the same id of the `RecyclerViewType` that will represent the data. Also the method receives the `DelegateViewHolder` as a lambda fuction to be executed by the adapter. 
+
+
+Enjoy it! :) and any feedback is welcome! 
+
 
 
 
