@@ -12,14 +12,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
+        // Creating the Composite adapter
         val adapter = CompositeDelegateAdapter(10)
 
+        // Appending a ViewHolder to be used with the Data with ViewType id `DelegateViewTypes.COLOR_VIEW_TYPE.ordinal`
         adapter.appendDelegate(DelegateViewTypes.COLOR_VIEW_TYPE.ordinal) { ColorItemViewHolder(it) }
 
         recyclerView.adapter = adapter
 
+        // Adding new items to the recycler by adding many ColorRecyclerViewType
         adapter.addNewItem(ColorRecyclerViewType(
                 "Test 1",
                 R.color.white,

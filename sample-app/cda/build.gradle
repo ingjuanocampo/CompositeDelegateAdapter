@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'com.jfrog.bintray'
     id 'maven-publish'
 }
 
@@ -78,26 +77,3 @@ publishing {
         }
     }
 }
-
-// Bintray config
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    publications = ['MyPublication']
-    pkg {
-        repo = "CDA"
-        name = "$libGroupId:$libArtifactId"
-        desc = libDesc
-        licenses = libLicenses
-        vcsUrl = libVCSUrl
-        version {
-            name = libVersion
-            vcsTag = libVersion
-            released = new Date()
-        }
-    }
-}
-//endregion
