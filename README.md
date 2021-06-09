@@ -7,7 +7,7 @@ Also the lib includes some convenience methods to easily notify calculate and di
 Using this libs you should speed up your development and reduce the changes of getting a long classes adapters. With CDA you only concernt about the fact of building the ViewHolders you want to include in the adapter and adding the data that it represents. No switches, not adapters, no need to notify updates manually. 
 
 
-### Version 1.0.2
+### Version 1.0.3
 
 First release of the lib, waiting for feedback. 
 Included: 
@@ -22,7 +22,7 @@ Included:
 #### Setting up dependecy 
 
 ```
-    implementation 'com.ingjuanocampo:cda:XXX'
+    implementation 'com.github.ingjuanocampo:CompositeDelegateAdapter:XXX'
 ```
 
 Please replace the `XXX` with the latest version. 
@@ -31,9 +31,8 @@ Please replace the `XXX` with the latest version.
 Also include this into the repositories list 
 
 ```
-  maven {
-           url  "https://dl.bintray.com/ingjuanocampo/CDA"
-       }
+    maven { url 'https://jitpack.io' }
+
 ```
 
 It should ended up looking like this: 
@@ -43,9 +42,7 @@ allprojects {
      repositories {
          google()
          jcenter()
-         maven {
-             url  "https://dl.bintray.com/ingjuanocampo/CDA"
-         }
+         maven { url 'https://jitpack.io' }
      }
 ```
 
