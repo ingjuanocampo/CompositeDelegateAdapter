@@ -54,7 +54,7 @@ allprojects {
         val adapter = CompositeDelegateAdapter(10)
 ```
 
-The class extends from the RecyclerView.Adapter and it is open to extension (Please avoid it, keep you adapters easy and clean) 
+The class extends from the RecyclerView.Adapter and it is open to extension (Please avoid it, keep your adapters easy and clean) 
 
 
 This adapter uses to renderize a lisf of DelegateViewHolder, and you can add them so the CompositeDelegateAdapter. 
