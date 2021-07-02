@@ -93,7 +93,7 @@ data class ColorRecyclerViewType(val text: String, val textColor: Int, val bkg: 
 
 Please be aware that the model you will use here should represent what need to be bound into the ViewHolder. 
 
-3. DelegateViewHolder: This class extends from `RecyclerView.ViewHolder` and is the one in charge to bind the information of the assigned `RecyclerViewType` when the adapter binds the for that particular position. 
+3. DelegateViewHolder: This class extends from `RecyclerView.ViewHolder` and is the one in charge of biding the information assigned to `RecyclerViewType` for the given position. 
 
 For example: 
 
