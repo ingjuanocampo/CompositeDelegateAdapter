@@ -8,7 +8,7 @@ import com.ingjuanocampo.cdapter.DelegateViewHolder
 import com.ingjuanocampo.cdapter.RecyclerViewType
 import com.ingjuanocampo.cdapter.sample.R
 
-data class ColorItemViewHolder( val parent: ViewGroup):
+class ColorItemViewHolder(parent: ViewGroup):
     DelegateViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.delegate_color, parent, false)) {
 
     private val tvDelegate = itemView.findViewById<TextView>(R.id.tvDelegate)
