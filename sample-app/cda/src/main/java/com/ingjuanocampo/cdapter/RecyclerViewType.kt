@@ -1,6 +1,6 @@
 package com.ingjuanocampo.cdapter
 
 interface RecyclerViewType {
-    fun getDelegateId(): Int
+    fun getDelegateId(): Int = this.hashCode()
     fun getViewType(): Int
 }
